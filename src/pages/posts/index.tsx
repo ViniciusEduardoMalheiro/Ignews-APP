@@ -24,22 +24,13 @@ export default function Posts ({ posts }: PostsProps) {
 
         <main className={styles.container}>
             <div className={styles.posts}>
-                
-            <a href="#">
-                <time>28 de abril de 2022</time>
-                <strong>Como renomear vários arquivos de uma vez usando o terminal</strong>
-                <p>Suponha que seu projeto tenha uma base de código com 150 arquivos JavaScript e você precisar migrar para TypeScript alterando as extensões dos arquivos. </p>
-            </a>
-            <a href="#">
-                <time>28 de abril de 2022</time>
-                <strong>Como renomear vários arquivos de uma vez usando o terminal</strong>
-                <p>Suponha que seu projeto tenha uma base de código com 150 arquivos JavaScript e você precisar migrar para TypeScript alterando as extensões dos arquivos. </p>
-            </a>
-            <a href="#">
-                <time>28 de abril de 2022</time>
-                <strong>Como renomear vários arquivos de uma vez usando o terminal</strong>
-                <p>Suponha que seu projeto tenha uma base de código com 150 arquivos JavaScript e você precisar migrar para TypeScript alterando as extensões dos arquivos. </p>
-            </a>
+                {posts.map(post => (
+                <a key={post.slug} href="#">
+                    <time>{post.updatedAt}</time>
+                    <strong>{post.title}</strong>
+                    <p>{post.excerpt}</p>
+                </a>  
+                ))}
             </div>
         </main>
         </>
@@ -71,6 +62,8 @@ export const getStaticProps: GetStaticProps = async () => {
     })
        
      return {
-         props: { }
+         props: {
+             posts
+         }
      }
 }
